@@ -2,7 +2,7 @@
 
 </div>
 <div class="general-container">
-  <img src="../../../assets/university-svgrepo-com.svg" alt="" id="logo">
+  <img src="../../../assets/university-svgrepo-com.svg" alt="" id="logo" (click)="clearData()">
   <mat-form-field appearance="fill">
     <mat-label>Country</mat-label>
     <mat-select #countryName (selectionChange)="getUniversity()">
@@ -12,9 +12,7 @@
     </mat-select>
   </mat-form-field>
 
-<div *ngIf="universities !== undefined; then thenBlock else elseBlock"></div>
-
-  <ng-template #thenBlock>
+  <div [hidden]="hidePaginator">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns" class="generated-table">
         <th mat-header-cell *matHeaderCellDef>{{ column === 'name' ? 'Name' : 'Website' }}</th>
@@ -32,9 +30,13 @@
       [pageSizeOptions]="[10, 20, 30]"
       showFirstLastButtons
     ></mat-paginator>
-  </ng-template>
+  </div>
 
-  <ng-template #elseBlock>
+  <div [hidden]="welcome">
     <p>{{ elseVariable }}</p>
-  </ng-template>
+  </div>
+
+  <div [hidden]="noResults">
+    <p>Your search returned no results</p>
+  </div>
 </div>
