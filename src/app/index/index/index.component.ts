@@ -10,7 +10,7 @@ import {MatDialog} from "@angular/material/dialog";
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export class IndexComponent implements AfterViewInit{
+export class IndexComponent {
 
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild('paginatorPageSize') paginatorPageSize!: MatPaginator;
@@ -31,27 +31,21 @@ export class IndexComponent implements AfterViewInit{
     this.service.getCountries().subscribe(async (data: any) => {
       this.countries = await data
     })
+this.getUniversity();
   }
 
   getUniversity() {
-    this.service.getUniversity(this.countryName?.value).subscribe(async data => {
-      {
-        this.universities = await data;
-        if(this.universities.length === 0) {
-          this.universities = undefined;
-          this.elseVariable = 'No data available';
-        }
-        console.log("first")
+    this.service.getUniversity(this.countryName?.value).subscribe({
+      next: (data) => {
+        this.universities = data;
         this.dataSource = new MatTableDataSource(this.universities);
         this.dataSource.paginator = this.paginator;
         this.dataSourceWithPageSize.paginator = this.paginatorPageSize;
+      },
+      error: (err) => {
+        console.log("Error: ", err)
       }
     })
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSourceWithPageSize.paginator = this.paginatorPageSize;
   }
 
   visitUniversityWebsite(web_pages: any) {
