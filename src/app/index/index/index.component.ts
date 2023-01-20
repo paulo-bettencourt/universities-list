@@ -3,45 +3,78 @@ import {ApiService} from "../../services/api.service";
 import {MatSelect} from "@angular/material/select";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
+import {map, Observable} from "rxjs";
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent {
 
   @ViewChild('countryName') countryName: MatSelect | undefined;
   countries!: any;
-
-
+  universities!: any;
+  universities$!: any;
 
   constructor(private service: ApiService) {
-    this.service.getCountries().subscribe((data: any) => {
-      this.countries = data
+    this.service.getCountries().subscribe(async (data: any) => {
+      this.countries = await data
     })
+    console.log("ahh", this.countries)
+
   }
 
-  ngOnInit() {
-  }
+  async getUniversity() {
 
-  getUniversity() {
-    this.service.getUniversity(this.countryName?.value).subscribe(data => {
-      console.log("univ", data)
+    this.service.getUniversity(this.countryName?.value).subscribe(async data => {
+      {
+        this.universities = await data;
+        console.log("univ", this.universities);
+        this.dataSource = new MatTableDataSource(this.universities);
+      }
     })
+
+    console.log("nova variavel", this.universities)
+
+  // this.universities$ = this.service.getUniversity(this.countryName?.value);
+
+  this.EmpData2 = [
+    {
+      "web_pages": [
+        "http://www.aabfs.org/"
+      ],
+      "state-province": 'null',
+      "alpha_two_code": "JO",
+      "name": "LOREM ISPUM!!!!!!",
+      "country": "Jordan",
+      "domains": [
+        "aabfs.org"
+      ]
+    }
+  ]
+    this.dataSource = new MatTableDataSource(this.EmpData2);
   }
 
   displayedColumns: string[] = [
-    'id',
-    'firstname',
-    'lastname',
-    'email',
-    'gender',
-    'jobtitle',
-    'department',
+    "web_pages",
+  "state-province",
+  "alpha_two_code",
+  "name",
+  "country",
+  "domains"
   ];
 
   EmpData: any[] = [
+    {
+      countries: 'UK'
+    },
+    {
+      countries: 'Portugal'
+    },
+  ];
+
+  EmpData1: any[] = [
     {
       id: 1,
       firstname: 'Mellie',
@@ -144,9 +177,23 @@ export class IndexComponent implements OnInit {
     },
   ];
 
-  dataSource = new MatTableDataSource(this.EmpData);
-  dataSourceWithPageSize = new MatTableDataSource(this.EmpData);
+  EmpData2 = [
+    {
+      "web_pages": [
+        "http://www.aabfs.org/"
+      ],
+      "state-province": 'null',
+      "alpha_two_code": "JO",
+      "name": "Arab Academy for Banking and Financial Sciences",
+      "country": "Jordan",
+      "domains": [
+        "aabfs.org"
+      ]
+    }
+  ]
 
+  dataSource = new MatTableDataSource(this.EmpData2);
+  dataSourceWithPageSize = new MatTableDataSource(this.EmpData2)
 
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild('paginatorPageSize') paginatorPageSize!: MatPaginator;
