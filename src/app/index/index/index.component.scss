@@ -11,3 +11,40 @@ mat-paginator {
   margin-top: 3%;
 }
 
+
+
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  border-color: currentColor;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-cell:nth-child(2) {
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .generated-table {
+    display: table;
+  }
+
+  .mat-cell:nth-child(1) {
+    font-size: 0.8rem;
+    padding: 4%;
+  }
+
+  .mat-cell:nth-child(2) {
+    font-size: 0.8rem;
+    font-style: italic;
+    text-align: right;
+  }
+}
