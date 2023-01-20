@@ -23,10 +23,14 @@ export class IndexComponent {
     })
   }
 
-  async getUniversity() {
+  getUniversity() {
     this.service.getUniversity(this.countryName?.value).subscribe(async data => {
       {
+        console.log("data", data)
         this.universities = await data;
+        if(this.universities.length === 0) {
+          this.universities = undefined;
+        }
         this.dataSource = new MatTableDataSource(this.universities);
         this.dataSource.paginator = this.paginator;
         this.dataSourceWithPageSize.paginator = this.paginatorPageSize;
