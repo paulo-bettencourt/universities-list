@@ -5,6 +5,7 @@ import {MatPaginator } from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {ThemePalette} from "@angular/material/core";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-index',
@@ -31,14 +32,21 @@ export class IndexComponent {
   hidePaginator = true;
   noResults = true;
   isLoading = false;
+  form = this.fb.group({
+      dropdown: ['']
+  })
 
-  constructor(private service: ApiService) {
+  constructor(private service: ApiService, private fb: FormBuilder) {
+    this.getCountries();
+  }
+
+  getCountries() {
     this.service.getCountries().subscribe(async (data: any) => {
-      this.countries = await data
+      this.countries = await data;
     })
   }
 
-  getUniversity() {
+  getUniversities() {
     this.isLoading = true;
     this.service.getUniversity(this.countryName?.value).subscribe({
       next: (data) => {
@@ -62,7 +70,7 @@ export class IndexComponent {
     })
   }
 
-  visitUniversityWebsite(web_pages: any) {
+  visitUniversityWebsiteOnClick(web_pages: any) {
     window.open(web_pages, "mywindow","menubar=1,resizable=1,width=600,height=300");
   }
 
@@ -72,6 +80,8 @@ export class IndexComponent {
     this.welcome = false;
     this.noResults = true;
     this.dataSource = new MatTableDataSource();
+    this.form.controls['dropdown'].setValue(null)
   }
+
 
 }

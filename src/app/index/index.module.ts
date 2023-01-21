@@ -10,6 +10,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [{
   path: '',
@@ -31,7 +32,8 @@ const routes: Routes = [{
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
   ]
 })
 export class IndexModule { }
