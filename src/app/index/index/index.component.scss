@@ -36,6 +36,15 @@ table {
   margin: auto;
 }
 
+.spin-container {
+  margin: auto;
+  padding-top: 30px;
+}
+
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: black;
+}
+
 #logo {
   max-width: 100%;
   height: 200px;

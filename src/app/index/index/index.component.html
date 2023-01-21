@@ -3,6 +3,9 @@
 </div>
 <div class="general-container">
   <img src="../../../assets/university-svgrepo-com.svg" alt="" id="logo" (click)="clearData()">
+  <div class="uploader-status">
+    <mat-spinner *ngIf="isLoading" class="spin-container"></mat-spinner>
+  </div>
   <mat-form-field appearance="fill">
     <mat-label>Country</mat-label>
     <mat-select #countryName (selectionChange)="getUniversity()">
@@ -11,7 +14,6 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-
   <div [hidden]="hidePaginator">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns" class="generated-table">

@@ -4,6 +4,7 @@ import {MatSelect} from "@angular/material/select";
 import {MatPaginator } from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
   selector: 'app-index',
@@ -29,6 +30,7 @@ export class IndexComponent {
   welcome = false;
   hidePaginator = true;
   noResults = true;
+  isLoading = false;
 
   constructor(private service: ApiService) {
     this.service.getCountries().subscribe(async (data: any) => {
@@ -37,6 +39,7 @@ export class IndexComponent {
   }
 
   getUniversity() {
+    this.isLoading = true;
     this.service.getUniversity(this.countryName?.value).subscribe({
       next: (data) => {
         this.universities = data;
@@ -51,6 +54,7 @@ export class IndexComponent {
         this.dataSource = new MatTableDataSource(this.universities);
         this.dataSource.paginator = this.paginator;
         this.dataSourceWithPageSize.paginator = this.paginatorPageSize;
+        this.isLoading = false;
       },
       error: (err) => {
         console.log("Error: ", err)
