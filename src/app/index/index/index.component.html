@@ -9,7 +9,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Country</mat-label>
     <mat-select #countryName (selectionChange)="getUniversities()" id="dropdown-menu" formControlName="dropdown">
-      <mat-option *ngFor="let country of countries" [value]="country.name.common" >
+      <mat-option *ngFor="let country of countries" [value]="country.name.common" matTooltip="University Database from {{country.name.common}}">
         {{country.name.common}}
       </mat-option>
     </mat-select>
@@ -19,7 +19,7 @@
       <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns" class="generated-table">
         <th mat-header-cell *matHeaderCellDef>{{ column === 'name' ? 'Name' : 'Website' }}</th>
         <td mat-cell *matCellDef="let emp" (click)="visitUniversityWebsiteOnClick(emp.web_pages)"
-            matTooltip="Click to visit {{emp.name}} website"
+            matTooltip="Click to visit {{emp.name}}'s website"
         >{{ emp[column] }}</td>
       </ng-container>
 

@@ -44,7 +44,6 @@ export class IndexComponent {
   getCountries() {
     this.service.getCountries().subscribe(async (data: any) => {
       this.countries = await data;
-      console.log("countries", this.countries)
       this.countries.sort(function (a: any, b: any) {
         if (a.name.common < b.name.common) {
           return -1;
@@ -62,7 +61,6 @@ export class IndexComponent {
     this.service.getUniversity(this.countryName?.value).subscribe({
       next: (data) => {
         this.universities = data;
-        console.log("univ", this.universities)
         this.universities.sort(function (a: any, b: any) {
           if (a.name < b.name) {
             return -1;
