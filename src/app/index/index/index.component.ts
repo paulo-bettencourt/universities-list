@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ThemePalette} from "@angular/material/core";
 import {FormBuilder} from "@angular/forms";
 import {Title} from "@angular/platform-browser";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-index',
@@ -42,8 +43,10 @@ export class IndexComponent {
   }
 
   getCountries() {
+    this.isLoading = true;
     this.service.getCountries().subscribe(async (data: any) => {
       this.countries = await data;
+      this.isLoading = false;
       this.countries.sort(function (a: any, b: any) {
         if (a.name.common < b.name.common) {
           return -1;

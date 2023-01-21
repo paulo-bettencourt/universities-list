@@ -15,10 +15,10 @@ export class ApiService {
   }
 
   getUniversity(university: string): Observable<University> {
-    return this.http.get<University>(`http://universities.hipolabs.com/search?country=${university}&s=1`);
+    return this.http.get<University>(`https://blushing-jacket-foal.cyclic.app/${university}`);
   }
 
   getCountries() {
-    return this.http.get('https://restcountries.com/v3.1/all')
+    return this.http.get('https://blushing-jacket-foal.cyclic.app/countries/api')
   }
 }
