@@ -37,14 +37,23 @@ export class IndexComponent {
       dropdown: ['']
   })
 
-  constructor(private service: ApiService, private fb: FormBuilder, private title: Title) {
-    this.title.setTitle('Worldwide University Database');
+  constructor(private service: ApiService, private fb: FormBuilder) {
     this.getCountries();
   }
 
   getCountries() {
     this.service.getCountries().subscribe(async (data: any) => {
       this.countries = await data;
+      console.log("countries", this.countries)
+      this.countries.sort(function (a: any, b: any) {
+        if (a.name.common < b.name.common) {
+          return -1;
+        }
+        if (a.name.common > b.name.common) {
+          return 1;
+        }
+        return 0;
+      });
     })
   }
 
@@ -53,6 +62,16 @@ export class IndexComponent {
     this.service.getUniversity(this.countryName?.value).subscribe({
       next: (data) => {
         this.universities = data;
+        console.log("univ", this.universities)
+        this.universities.sort(function (a: any, b: any) {
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        });
         this.welcome = true;
         if(this.universities.length === 0) {
           this.hidePaginator = true;
@@ -71,6 +90,8 @@ export class IndexComponent {
       }
     })
   }
+
+
 
   visitUniversityWebsiteOnClick(web_pages: any) {
     window.open(web_pages, "mywindow","menubar=1,resizable=1,width=600,height=300");
