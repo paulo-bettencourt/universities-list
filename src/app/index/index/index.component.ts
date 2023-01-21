@@ -6,6 +6,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {ThemePalette} from "@angular/material/core";
 import {FormBuilder} from "@angular/forms";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-index',
@@ -36,7 +37,8 @@ export class IndexComponent {
       dropdown: ['']
   })
 
-  constructor(private service: ApiService, private fb: FormBuilder) {
+  constructor(private service: ApiService, private fb: FormBuilder, private title: Title) {
+    this.title.setTitle('Worldwide University Database');
     this.getCountries();
   }
 
