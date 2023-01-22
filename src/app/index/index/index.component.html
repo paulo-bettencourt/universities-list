@@ -6,14 +6,14 @@
   <div class="uploader-status">
     <mat-spinner *ngIf="isLoading" class="spin-container"></mat-spinner>
   </div>
-  <mat-form-field appearance="fill">
-    <mat-label>Country</mat-label>
-    <mat-select #countryName (selectionChange)="getUniversities()" id="dropdown-menu" formControlName="dropdown">
-      <mat-option *ngFor="let country of countries" [value]="country.name.common" matTooltip="University Database from {{country.name.common}}">
-        {{country.name.common}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Country</mat-label>
+      <mat-select #countryName (selectionChange)="getUniversities()" id="dropdown-menu" formControlName="dropdown">
+        <mat-option *ngFor="let country of countries" [value]="country.name.common" matTooltip="University Database from {{country.name.common}}">
+          {{country.name.common}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   <div [hidden]="hidePaginator">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns" class="generated-table">
@@ -28,6 +28,7 @@
     </table>
 
     <mat-paginator
+      id="mat-paginator-id"
       #paginator
       [pageSizeOptions]="[10, 20, 30]"
       showFirstLastButtons

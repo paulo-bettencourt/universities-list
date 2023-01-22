@@ -51,7 +51,16 @@ table {
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
+.mat-paginator{
+  ::ng-deep {
+    background-color: brown;
+    color: gold;
+    font-size: 0.5rem;
+  }
+
+
+
+  @media (max-width: 900px) {
   .generated-table {
     display: table;
   }
@@ -65,5 +74,16 @@ table {
     font-size: 0.8rem;
     font-style: italic;
     text-align: right;
+
+
+    table,
+    .mat-elevation-z8 {
+      margin-bottom: 300px;
+    }
+
+
+
+
+    }
   }
 }

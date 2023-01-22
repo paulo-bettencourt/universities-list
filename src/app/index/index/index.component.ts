@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ApiService} from "../../services/api.service";
 import {MatSelect} from "@angular/material/select";
 import {MatPaginator } from "@angular/material/paginator";
@@ -12,7 +12,8 @@ import {filter} from "rxjs";
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+  styleUrls: ['./index.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class IndexComponent {
 
