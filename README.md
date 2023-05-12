@@ -1,6 +1,10 @@
-# ListOfUniversities
+# Worldwide University Database
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
+You can unveil universities all over the world with this database with academies from all over the world plus a list of countries.
+
+This application allows you to search and filter universities from around the globe by country. The frontend of the application is built using Angular, TypeScript, RxJS, Bootstrap, and Firebase, while the backend is powered by a NodeJS Express server.
+
+If you are looking to work on the backend server, it can be scaffolded using the code located at https://github.com/paulo-bettencourt/node-js-express-worldwide-university-database. This repository contains all of the necessary code to set up and run the server, as well as additional configuration files and scripts. By leveraging this backend server, you can further enhance the functionality and features of the Worldwide University Database Angular app.
 
 ## Firebase Deply
 
