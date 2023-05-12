@@ -6,6 +6,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 You can unveil universities all over the world at `https://universities-database.web.app/`
 
+## Screenshots
+
+![Screenshot 2023-05-12 at 09 50 43](https://github.com/paulo-bettencourt/worldwide-university-database/assets/37920932/3cbe84a2-7598-48f3-ac0d-92e3f4eed58c)
+
+![Screenshot 2023-05-12 at 09 50 57](https://github.com/paulo-bettencourt/worldwide-university-database/assets/37920932/cc75a152-4c62-4abc-9ede-b3bd6256610f)
+
+![Screenshot 2023-05-12 at 09 51 11](https://github.com/paulo-bettencourt/worldwide-university-database/assets/37920932/f883b74f-2d82-4465-970e-c6dc7ed1ff90)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
